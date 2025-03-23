@@ -7,21 +7,25 @@ But no one from the outside could visit the castle — it was surrounded by fire
 
 So the King summoned a brave little mole named **Cloudflared** 🐹 to dig a **magic tunnel** through the clouds.
 
-This tunnel was named:
+This tunnel was named: magic-door
 
+---
 
-#### magic-door
+```yaml
+
 ---
 
 ## 🔧 What This Does
 
 This service creates a secure Cloudflare Tunnel between:
 
-🌍 The public domain → proxmox.vnasmanu.sbs⬇
-☁️ Cloudflare Tunnel → running inside Docker⬇
-🏰 Your Proxmox server at 192.168.1.101:8006
+```
 
+🌍 The public domain → proxmox.vnasmanu.sbs
+⬇ ☁️ Cloudflare Tunnel → running inside Docker
+⬇ 🏰 Your Proxmox server at 192.168.1.101:8006
 
+```yaml
 
 No ports were opened.  
 No dragons were let in.  
@@ -31,13 +35,24 @@ The mole made the journey **completely safe and silent** 🐾🌫️
 
 ## 📦 Folder Structure
 
+
+
+```
+
 cloudflared/ ├── docker-compose.yml ← Runs the mole container └── README.md ← You're reading this scroll
 
+
+```scss
 
 Secrets are hidden in:
 
 
+```
+
 ../secrets/cloudflared.env
+
+
+```yaml
 
 
 ---
@@ -57,13 +72,15 @@ Secrets are hidden in:
 
 ---
 
-
 ## 🧟 The Problem We Faced
 
 When the mole first dug the tunnel, he ran into a **dragon named TLS** 🐉
 
+```
+
 x509: certificate is valid for 127.0.0.1, not 192.168.1.101
 
+```yaml
 
 
 This meant:
@@ -109,3 +126,7 @@ And Proxmox became reachable from the sky. ☁️✨
 > But the castle is now reachable from anywhere.  
 > This is how a modern Pony Kingdom should be run."
 
+
+
+
+```
