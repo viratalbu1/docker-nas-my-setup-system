@@ -33,6 +33,10 @@ The mole made the journey **completely safe and silent** 🐾🌫️
 
 cloudflared/ ├── docker-compose.yml ← Runs the mole container └── README.md ← You're reading this scroll
 
+
+Secrets are hidden in:
+
+
 ../secrets/cloudflared.env
 
 
@@ -52,6 +56,7 @@ cloudflared/ ├── docker-compose.yml ← Runs the mole container └── 
 - This lets cloudflared talk to Traefik later 🛡️
 
 ---
+
 
 ## 🧟 The Problem We Faced
 
