@@ -1,0 +1,25 @@
+log:
+  level: INFO
+
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+  proxmox-tls:
+    address: ":8443"
+    transport:
+      lifeCycle:
+        requestAcceptGraceTimeout: 0
+        graceTimeOut: 0
+
+providers:
+  docker:
+    exposedByDefault: false
+  file:
+    filename: /etc/traefik/dynamic.yml
+    watch: true
