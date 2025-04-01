@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  dashy:
+    image: lissy93/dashy:latest
+    container_name: dashy
+    restart: unless-stopped
+    ports:
+      - "4000:8080"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashy.rule=Host(`dashy.vnasmanu.sbs`)"
+      - "traefik.http.routers.dashy.entrypoints=web"
+      - "traefik.http.services.dashy.loadbalancer.server.port=8080"
+    networks:
+      - traefik-net
+    # volumes:
+    #   - ./conf:/app/public
+
+networks:
+  traefik-net:
+    external: true
