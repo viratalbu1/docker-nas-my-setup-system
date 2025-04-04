@@ -5,6 +5,8 @@ services:
     image: traefik:latest
     container_name: traefik
     restart: unless-stopped
+    env_file:
+      - ../secrets/traefik.env
     command:
       - --api.dashboard=true
       - --api.insecure=true
@@ -23,6 +25,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yml:/etc/traefik/traefik.yml:ro
       - ./dynamic.yml:/etc/traefik/dynamic.yml:ro
+      - ./letsencrypt:/letsencrypt
+    environment:
+      - CF_API_EMAIL=virat.braintwister@gmail.com
+      - CF_API_KEY=77c414b536563ceef1420a19650260158cc0e
     networks:
       - traefik-net
 

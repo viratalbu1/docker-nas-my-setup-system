@@ -23,3 +23,13 @@ providers:
   file:
     filename: /etc/traefik/dynamic.yml
     watch: true
+
+certificatesResolvers:
+  cloudflare:
+    acme:
+      email: virat.braintwister@gmail.com
+      storage: /letsencrypt/acme.json
+      dnsChallenge:
+        provider: cloudflare
+        delayBeforeCheck: 0
+

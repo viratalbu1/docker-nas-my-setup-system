@@ -2,3 +2,4 @@
 .env
 secrets/
 cloudflared/docker-compose.yml
+docker/secrets/
