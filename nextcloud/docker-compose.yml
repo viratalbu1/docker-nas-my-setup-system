@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  nextcloud:
+    image: nextcloud:28
+    container_name: nextcloud
+    restart: unless-stopped
+    ports:
+      - "9100:80"  # Optional: for local access without Traefik
+    environment:
+      - MYSQL_PASSWORD=changeme
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
+    volumes:
+      - nextcloud_data:/var/www/html
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.vnasmanu.sbs`)"
+      - "traefik.http.routers.nextcloud.entrypoints=websecure"
+      - "traefik.http.routers.nextcloud.tls=true"
+      - "traefik.http.routers.nextcloud.tls.certresolver=cloudflare"
+      - "traefik.docker.network=traefik-net"
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=80"
+    networks:
+      - traefik-net
+      - default
+
+  db:
+    image: mariadb:10.11
+    container_name: nextcloud_db
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=changeme
+      - MYSQL_PASSWORD=changeme
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  nextcloud_data:
+  db_data:
+
+networks:
+  traefik-net:
+    external: true
