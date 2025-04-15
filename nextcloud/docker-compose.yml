@@ -13,7 +13,7 @@ services:
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
     volumes:
-      - nextcloud_data:/var/www/html
+      - /mnt/nas_storage/nextcloud:/var/www/html
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.vnasmanu.sbs`)"
